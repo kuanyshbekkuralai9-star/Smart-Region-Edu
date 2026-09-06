@@ -1,0 +1,3363 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Smart-Region Edu | Өңірлік білім беру мен ЖИ</title>
+
+  <meta
+    name="description"
+    content="Smart-Region Edu — бастауыш сынып мұғалімдеріне арналған өңірлік білім беру және жасанды интеллект платформасы."
+  >
+
+  <style>
+    /* =========================================================
+       SMART-REGION EDU
+       Neo-Ethno Kazakhstan Education UI
+       All CSS is contained in this file.
+    ========================================================= */
+
+    :root {
+      --sky: #00a8e8;
+      --deep-blue: #0f4c81;
+      --blue-dark: #083b63;
+      --gold: #e5a93c;
+      --gold-light: #f5cf72;
+      --white: #ffffff;
+      --cream: #fffaf0;
+      --bg: #f4f9fc;
+      --text: #17324d;
+      --muted: #668097;
+      --success: #238636;
+      --shadow: 0 16px 45px rgba(15, 76, 129, 0.12);
+      --shadow-heavy: 0 22px 60px rgba(8, 59, 99, 0.2);
+      --radius: 22px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 168, 232, 0.08),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 30%,
+          rgba(229, 169, 60, 0.09),
+          transparent 28%
+        ),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================================================
+       ORNAMENTS
+    ========================================================= */
+
+    .ornament-strip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 14px;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0 12px,
+          rgba(229, 169, 60, 0.95) 12px 16px,
+          transparent 16px 26px
+        );
+      opacity: 0.9;
+    }
+
+    .ornament-strip::before,
+    .ornament-strip::after {
+      content: "";
+      position: absolute;
+      top: 1px;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .ornament-strip::before {
+      left: 8px;
+      border-radius: 50% 0 50% 0;
+    }
+
+    .ornament-strip::after {
+      right: 8px;
+      border-radius: 0 50% 0 50%;
+    }
+
+    .ornament-corner {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .ornament-corner::before,
+    .ornament-corner::after {
+      content: "";
+      position: absolute;
+      border: 3px solid var(--gold);
+    }
+
+    .ornament-corner::before {
+      width: 32px;
+      height: 32px;
+      border-radius: 50% 0 50% 0;
+      transform: rotate(45deg);
+      top: 10px;
+      left: 10px;
+    }
+
+    .ornament-corner::after {
+      width: 24px;
+      height: 24px;
+      border-radius: 0 50% 0 50%;
+      transform: rotate(45deg);
+      top: 34px;
+      left: 34px;
+    }
+
+    .corner-tl {
+      top: 0;
+      left: 0;
+    }
+
+    .corner-tr {
+      top: 0;
+      right: 0;
+      transform: rotate(90deg);
+    }
+
+    .corner-bl {
+      bottom: 0;
+      left: 0;
+      transform: rotate(-90deg);
+    }
+
+    .corner-br {
+      bottom: 0;
+      right: 0;
+      transform: rotate(180deg);
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 59, 99, 0.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: auto;
+      min-height: 82px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      min-width: max-content;
+    }
+
+    .logo-mark {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .logo-mark::before,
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 23px;
+      height: 23px;
+      border: 3px solid var(--gold-light);
+      border-radius: 50% 0 50% 0;
+      transform: rotate(45deg);
+    }
+
+    .logo-mark::before {
+      left: 7px;
+      top: 12px;
+    }
+
+    .logo-mark::after {
+      right: 7px;
+      top: 12px;
+      transform: rotate(-45deg);
+    }
+
+    .logo-text strong {
+      display: block;
+      font-size: 19px;
+      letter-spacing: 0.2px;
+    }
+
+    .logo-text span {
+      font-size: 11px;
+      color: #bfe9fb;
+      letter-spacing: 0.8px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      color: #e7f7ff;
+      padding: 10px 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: white;
+      background: rgba(0,168,232,0.2);
+    }
+
+    .login-btn {
+      border: 1px solid rgba(229,169,60,0.8);
+      background: linear-gradient(
+        135deg,
+        var(--gold),
+        #f1c45c
+      );
+      color: var(--blue-dark);
+      font-weight: 800;
+      padding: 11px 20px;
+      border-radius: 12px;
+      transition: var(--transition);
+      box-shadow: 0 5px 18px rgba(229,169,60,0.25);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 25px rgba(229,169,60,0.35);
+    }
+
+    .mobile-menu {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      font-size: 23px;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(15,76,129,0.98),
+          rgba(0,168,232,0.9)
+        );
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(229,169,60,0.3),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(255,255,255,0.08),
+          transparent 25%
+        );
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1240px;
+      margin: auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 70px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      background: rgba(255,255,255,0.08);
+      color: #fbe1a2;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--gold-light);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      font-size: 18px;
+      color: #e4f5fc;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .primary-btn {
+      border: 2px solid var(--gold);
+      background: var(--gold);
+      color: var(--blue-dark);
+      padding: 14px 23px;
+      border-radius: 14px;
+      font-weight: 800;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.14);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      background: var(--gold-light);
+    }
+
+    .secondary-btn {
+      border: 2px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      padding: 14px 23px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .secondary-btn:hover {
+      background: rgba(255,255,255,0.17);
+      transform: translateY(-3px);
+    }
+
+    /* Hero visual */
+
+    .hero-visual {
+      position: relative;
+      min-height: 400px;
+      display: grid;
+      place-items: center;
+    }
+
+    .ai-orbit {
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.35);
+      position: relative;
+      animation: rotate 25s linear infinite;
+    }
+
+    .ai-orbit::before {
+      content: "";
+      position: absolute;
+      inset: 32px;
+      border: 1px solid rgba(229,169,60,0.55);
+      border-radius: 50%;
+    }
+
+    .ai-core {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 45% 55% 50% 50%;
+      background: linear-gradient(
+        135deg,
+        #ffffff,
+        #dff6ff
+      );
+      box-shadow:
+        0 0 0 14px rgba(255,255,255,0.08),
+        0 20px 50px rgba(0,0,0,0.2);
+      display: grid;
+      place-items: center;
+      color: var(--deep-blue);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .ai-core-inner {
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .ai-core-inner .robot {
+      font-size: 42px;
+      display: block;
+    }
+
+    .ai-core-inner span {
+      font-size: 13px;
+    }
+
+    .orbit-item {
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      border-radius: 18px;
+      background: white;
+      color: var(--deep-blue);
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      animation: counterRotate 25s linear infinite;
+    }
+
+    .item-1 { top: -22px; left: 50%; transform: translateX(-50%); }
+    .item-2 { right: -10px; top: 50%; transform: translateY(-50%); }
+    .item-3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+    .item-4 { left: -10px; top: 50%; transform: translateY(-50%); }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes counterRotate {
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+    }
+
+    /* =========================================================
+       GENERAL SECTIONS
+    ========================================================= */
+
+    .section {
+      padding: 95px 24px;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 1240px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 50px;
+    }
+
+    .section-heading .tag {
+      display: inline-block;
+      color: var(--deep-blue);
+      background: #dff5fd;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      color: var(--blue-dark);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       FEATURES
+    ========================================================= */
+
+    .features {
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid #dcecf4;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .feature-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background: #e5f7fd;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .mini-ornament {
+      position: absolute;
+      right: -8px;
+      bottom: -8px;
+      width: 75px;
+      height: 75px;
+      border: 3px solid rgba(229,169,60,0.28);
+      border-radius: 50% 0 50% 0;
+      transform: rotate(45deg);
+    }
+
+    /* =========================================================
+       AI GENERATOR
+    ========================================================= */
+
+    .generator-section {
+      background:
+        linear-gradient(
+          180deg,
+          #f8fcff,
+          #eef8fc
+        );
+    }
+
+    .generator-wrapper {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #d8eaf3;
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 25px 28px;
+      border-bottom: 1px solid #e5eef3;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .panel-header-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--deep-blue);
+      color: white;
+      font-size: 22px;
+    }
+
+    .panel-header h3 {
+      color: var(--blue-dark);
+      font-size: 19px;
+    }
+
+    .panel-header p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .panel-body {
+      padding: 28px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      border: 1.5px solid #cfe1eb;
+      border-radius: 13px;
+      padding: 13px 14px;
+      outline: none;
+      color: var(--text);
+      background: #fbfdfe;
+      transition: var(--transition);
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--sky);
+      box-shadow: 0 0 0 4px rgba(0,168,232,0.1);
+    }
+
+    .generate-btn {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--deep-blue),
+          var(--sky)
+        );
+      color: white;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(15,76,129,0.2);
+      transition: var(--transition);
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(15,76,129,0.27);
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .demo-note {
+      margin-top: 15px;
+      padding: 12px 14px;
+      background: #fff8e8;
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      font-size: 12px;
+      color: #775b20;
+    }
+
+    /* Output */
+
+    .result-panel {
+      min-height: 500px;
+    }
+
+    .result-header {
+      padding: 24px 28px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue-dark),
+          var(--deep-blue)
+        );
+      color: white;
+      position: relative;
+    }
+
+    .result-header h3 {
+      font-size: 21px;
+      margin-bottom: 3px;
+    }
+
+    .result-header p {
+      color: #bde8f8;
+      font-size: 12px;
+    }
+
+    .result-content {
+      padding: 25px;
+      min-height: 380px;
+    }
+
+    .empty-state {
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state-icon {
+      width: 90px;
+      height: 90px;
+      margin: auto auto 15px;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      background: #edf9fd;
+      font-size: 42px;
+    }
+
+    .empty-state strong {
+      display: block;
+      color: var(--deep-blue);
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .tasks {
+      display: grid;
+      gap: 15px;
+    }
+
+    .task-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(229,169,60,0.65);
+      border-radius: 18px;
+      padding: 20px;
+      background:
+        linear-gradient(
+          135deg,
+          #fffef9,
+          #f9fcfd
+        );
+      box-shadow: 0 7px 22px rgba(15,76,129,0.08);
+      animation: taskAppear 0.5s ease both;
+    }
+
+    .task-card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .task-card:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    @keyframes taskAppear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .task-card::before,
+    .task-card::after {
+      content: "";
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      border: 2px solid var(--gold);
+      opacity: 0.45;
+      transform: rotate(45deg);
+      border-radius: 50% 0 50% 0;
+    }
+
+    .task-card::before {
+      top: -18px;
+      left: -18px;
+    }
+
+    .task-card::after {
+      bottom: -18px;
+      right: -18px;
+    }
+
+    .task-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 31px;
+      height: 31px;
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-weight: 900;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .task-title {
+      font-weight: 900;
+      color: var(--blue-dark);
+      margin-bottom: 9px;
+    }
+
+    .task-text {
+      font-size: 14px;
+      color: #38546b;
+      margin-bottom: 12px;
+    }
+
+    .task-answer {
+      display: inline-block;
+      background: #eaf8ef;
+      color: var(--success);
+      padding: 5px 9px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 9px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .small-btn {
+      border: 1px solid #cfe0e8;
+      background: white;
+      color: var(--deep-blue);
+      padding: 9px 13px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .small-btn:hover {
+      border-color: var(--sky);
+      background: #f2fbfe;
+    }
+
+    /* =========================================================
+       CHATBOT
+    ========================================================= */
+
+    .chat-section {
+      background: white;
+    }
+
+    .chat-layout {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
+    .persona-panel {
+      border-radius: 25px;
+      padding: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          var(--blue-dark),
+          var(--deep-blue)
+        );
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .persona-panel h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .persona-panel > p {
+      color: #c9eafa;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .persona-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .persona {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .persona:hover,
+    .persona.active {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--gold);
+    }
+
+    .persona-avatar {
+      width: 43px;
+      height: 43px;
+      border-radius: 12px;
+      background: var(--gold);
+      color: var(--blue-dark);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .persona strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .persona span {
+      font-size: 11px;
+      color: #b9dceb;
+    }
+
+    .chat-window {
+      min-height: 570px;
+      background: white;
+      border: 1px solid #dceaf1;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-top {
+      background:
+        linear-gradient(
+          135deg,
+          #f5fbfe,
+          white
+        );
+      padding: 20px 23px;
+      border-bottom: 1px solid #e3edf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      background: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+    }
+
+    .chat-person strong {
+      color: var(--blue-dark);
+      display: block;
+    }
+
+    .chat-person span {
+      color: var(--success);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .online-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #25b85a;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 22px;
+      overflow-y: auto;
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(0,168,232,0.06),
+          transparent 25%
+        ),
+        #fbfdfe;
+    }
+
+    .message {
+      display: flex;
+      margin-bottom: 14px;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .bubble {
+      max-width: 75%;
+      padding: 11px 14px;
+      border-radius: 15px;
+      font-size: 13px;
+    }
+
+    .message.bot .bubble {
+      background: white;
+      border: 1px solid #dfebf0;
+      border-bottom-left-radius: 4px;
+      color: #38546b;
+    }
+
+    .message.user .bubble {
+      background: var(--deep-blue);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .typing {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .typing i {
+      width: 5px;
+      height: 5px;
+      background: #8ca8b7;
+      border-radius: 50%;
+      animation: typing 1s infinite;
+    }
+
+    .typing i:nth-child(2) {
+      animation-delay: .15s;
+    }
+
+    .typing i:nth-child(3) {
+      animation-delay: .3s;
+    }
+
+    @keyframes typing {
+      50% {
+        transform: translateY(-3px);
+        opacity: .5;
+      }
+    }
+
+    .chat-input-area {
+      padding: 14px;
+      border-top: 1px solid #e1ebf0;
+      background: white;
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      border: 1px solid #cedfe7;
+      border-radius: 12px;
+      padding: 12px;
+      outline: none;
+    }
+
+    .chat-input-area input:focus {
+      border-color: var(--sky);
+    }
+
+    .send-btn {
+      width: 46px;
+      border: none;
+      border-radius: 12px;
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    /* =========================================================
+       STATISTICS
+    ========================================================= */
+
+    .stats {
+      background: var(--blue-dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat {
+      padding: 15px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 38px;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat span {
+      color: #bddceb;
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      background: #052d4d;
+      color: white;
+      padding: 50px 24px 25px;
+    }
+
+    .footer-grid {
+      max-width: 1240px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr 0.7fr 0.9fr;
+      gap: 35px;
+      padding-bottom: 35px;
+    }
+
+    .footer-brand p {
+      color: #9ec2d5;
+      font-size: 13px;
+      margin-top: 12px;
+      max-width: 350px;
+    }
+
+    footer h4 {
+      margin-bottom: 13px;
+      color: var(--gold-light);
+    }
+
+    footer ul {
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    footer li,
+    footer a {
+      color: #a8c9d9;
+      font-size: 13px;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .copyright {
+      max-width: 1240px;
+      margin: auto;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #7fa7bc;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* =========================================================
+       MODAL
+    ========================================================= */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(2,26,44,0.68);
+      backdrop-filter: blur(5px);
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal {
+      width: min(440px, 100%);
+      background: white;
+      border-radius: 23px;
+      overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.3);
+      animation: modalIn .3s ease;
+      position: relative;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-top {
+      padding: 25px;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--blue-dark),
+        var(--sky)
+      );
+    }
+
+    .modal-top h3 {
+      font-size: 23px;
+    }
+
+    .modal-body {
+      padding: 25px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.12);
+      color: white;
+      font-size: 20px;
+    }
+
+    .login-submit {
+      width: 100%;
+      margin-top: 8px;
+      border: none;
+      border-radius: 13px;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 5000;
+      background: var(--blue-dark);
+      color: white;
+      padding: 13px 18px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-heavy);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .3s ease;
+      font-size: 13px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 1000px) {
+      nav {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        min-height: 350px;
+      }
+
+      .generator-wrapper,
+      .chat-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .header-inner {
+        min-height: 70px;
+        padding: 0 15px;
+      }
+
+      .logo-text strong {
+        font-size: 16px;
+      }
+
+      .logo-text span {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        padding: 65px 18px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .ai-orbit {
+        width: 260px;
+        height: 260px;
+      }
+
+      .ai-core {
+        width: 120px;
+        height: 120px;
+      }
+
+      .orbit-item {
+        width: 52px;
+        height: 52px;
+      }
+
+      .section {
+        padding: 70px 17px;
+      }
+
+      .feature-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .copyright {
+        flex-direction: column;
+      }
+
+      .chat-window {
+        min-height: 520px;
+      }
+
+      .bubble {
+        max-width: 88%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
+
+  <header>
+    <div class="header-inner">
+
+      <a href="#home" class="logo">
+        <div class="logo-mark"></div>
+
+        <div class="logo-text">
+          <strong>Smart-Region Edu</strong>
+          <span>ӨҢІРЛІК БІЛІМ БЕРУ + ЖИ</span>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#home">Басты бет</a>
+        <a href="#features">Мүмкіндіктер</a>
+        <a href="#generator">AI Генератор</a>
+        <a href="#chat">AI-Тұлға</a>
+      </nav>
+
+      <button class="login-btn" id="loginBtn">
+        Кіру
+      </button>
+
+      <button class="mobile-menu" id="mobileMenu">
+        ☰
+      </button>
+
+    </div>
+
+    <div class="ornament-strip"></div>
+  </header>
+
+
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
+
+  <main id="home">
+
+    <section class="hero">
+
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">
+            🇰🇿 Neo-Ethno Education
+          </div>
+
+          <h1>
+            Smart-Region Edu:
+            <span>Өңір тарихы мен ЖИ-ді</span>
+            сабақта ұштастыру
+          </h1>
+
+          <p class="hero-description">
+            Бастауыш сынып мұғалімдеріне арналған заманауи
+            білім беру кеңістігі. Жасанды интеллект көмегімен
+            туған өлкенің тарихын, географиясын және тұлғаларын
+            сабақ мазмұнына айналдырыңыз.
+          </p>
+
+          <div class="hero-actions">
+
+            <button
+              class="primary-btn"
+              onclick="scrollToGenerator()"
+            >
+              🚀 Сабақ тапсырмасын жасау
+            </button>
+
+            <button
+              class="secondary-btn"
+              onclick="scrollToChat()"
+            >
+              🧑‍🏫 AI-Тарихи Тұлға
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="ai-orbit">
+
+            <div class="ai-core">
+              <div class="ai-core-inner">
+                <span class="robot">🤖</span>
+                <span>SMART AI</span>
+              </div>
+            </div>
+
+            <div class="orbit-item item-1">📚</div>
+            <div class="orbit-item item-2">🏛️</div>
+            <div class="orbit-item item-3">🇰🇿</div>
+            <div class="orbit-item item-4">✨</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="ornament-strip"></div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FEATURES
+    ======================================================== -->
+
+    <section class="section features" id="features">
+
+      <div class="section-inner">
+
+        <div class="section-heading">
+
+          <span class="tag">Платформа мүмкіндіктері</span>
+
+          <h2>
+            Ұлттық құндылық + заманауи технология
+          </h2>
+
+          <p>
+            Сабақ жоспарын қызықты, көрнекі және туған өлке
+            тарихымен байланысты түрде ұйымдастыруға көмектеседі.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+
+            <div class="feature-icon">🤖</div>
+
+            <h3>AI Сабақ генераторы</h3>
+
+            <p>
+              Сабақ тақырыбы мен өңірді енгізіп,
+              бірнеше секунд ішінде тапсырмалар
+              мен есептер алыңыз.
+            </p>
+
+            <div class="mini-ornament"></div>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-icon">🏛️</div>
+
+            <h3>Өңір тарихы</h3>
+
+            <p>
+              Тарихи орындар, табиғат, география
+              және жергілікті ерекшеліктерді оқу
+              тапсырмаларына енгізіңіз.
+            </p>
+
+            <div class="mini-ornament"></div>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-icon">🧑‍🎨</div>
+
+            <h3>Тарихи тұлғалар</h3>
+
+            <p>
+              Батырлар, ақындар, ғалымдар және
+              мәдениет қайраткерлері туралы
+              интерактивті диалог ұйымдастырыңыз.
+            </p>
+
+            <div class="mini-ornament"></div>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-icon">🧩</div>
+
+            <h3>Бастауыш сыныпқа бейімделген</h3>
+
+            <p>
+              Қарапайым тіл, қысқа тапсырмалар
+              және жас ерекшелігіне сай логикалық
+              сұрақтар.
+            </p>
+
+            <div class="mini-ornament"></div>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-icon">🎯</div>
+
+            <h3>Оқу мақсаты</h3>
+
+            <p>
+              Есептеу, салыстыру, оқу, зерттеу,
+              логикалық ойлау сияқты дағдыларды
+              дамытуға бағытталған.
+            </p>
+
+            <div class="mini-ornament"></div>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-icon">🌐</div>
+
+            <h3>Өңірден Қазақстанға</h3>
+
+            <p>
+              Оқушы өз ауылынан немесе қаласынан
+              бастап Қазақстанның кең тарихын
+              зерттей алады.
+            </p>
+
+            <div class="mini-ornament"></div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         AI GENERATOR
+    ======================================================== -->
+
+    <section class="section generator-section" id="generator">
+
+      <div class="section-inner">
+
+        <div class="section-heading">
+
+          <span class="tag">Demo AI</span>
+
+          <h2>Интерактивті тапсырма генераторы</h2>
+
+          <p>
+            Сабақ тақырыбы мен туған өңірді енгізіңіз.
+            Демо-жүйе бір секунд ішінде үш тапсырма құрастырады.
+          </p>
+
+        </div>
+
+
+        <div class="generator-wrapper">
+
+
+          <!-- INPUT PANEL -->
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div class="panel-header-icon">
+                🤖
+              </div>
+
+              <div>
+                <h3>AI параметрлері</h3>
+                <p>Сабаққа қажетті деректерді енгізіңіз</p>
+              </div>
+
+            </div>
+
+
+            <div class="panel-body">
+
+              <div class="field">
+
+                <label for="subject">
+                  Сабақ тақырыбы
+                </label>
+
+                <input
+                  id="subject"
+                  type="text"
+                  value="Қосу амалы"
+                  placeholder="Мысалы: Қосу амалы"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="region">
+                  Өңір / қала / ауыл
+                </label>
+
+                <input
+                  id="region"
+                  type="text"
+                  value="Ақтөбе"
+                  placeholder="Мысалы: Ақтөбе"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="grade">
+                  Сынып
+                </label>
+
+                <select id="grade">
+
+                  <option value="1">
+                    1-сынып
+                  </option>
+
+                  <option value="2" selected>
+                    2-сынып
+                  </option>
+
+                  <option value="3">
+                    3-сынып
+                  </option>
+
+                  <option value="4">
+                    4-сынып
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <button
+                class="generate-btn"
+                id="generateBtn"
+              >
+                🚀 AI арқылы тапсырма жасау
+              </button>
+
+
+              <div class="demo-note">
+                💡 <strong>Demo режимі:</strong>
+                нақты сыртқы AI API қолданылмайды.
+                JavaScript алдын ала дайындалған өңірлік
+                деректер негізінде тапсырма жасайды.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- RESULT PANEL -->
+
+          <div class="panel result-panel">
+
+            <div class="result-header">
+
+              <h3>AI жасаған тапсырмалар</h3>
+
+              <p id="resultSubtitle">
+                Нәтиже осы жерде көрсетіледі
+              </p>
+
+              <div class="ornament-strip"></div>
+
+            </div>
+
+
+            <div
+              class="result-content"
+              id="resultContent"
+            >
+
+              <div class="empty-state">
+
+                <div>
+
+                  <div class="empty-state-icon">
+                    ✨
+                  </div>
+
+                  <strong>
+                    Тапсырма әлі жасалмады
+                  </strong>
+
+                  <p>
+                    Сол жақтағы өрістерді толтырып,
+                    батырманы басыңыз.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CHATBOT
+    ======================================================== -->
+
+    <section class="section chat-section" id="chat">
+
+      <div class="section-inner">
+
+        <div class="section-heading">
+
+          <span class="tag">AI-Тарихи Тұлға</span>
+
+          <h2>
+            Баланың туған өңірімен диалог
+          </h2>
+
+          <p>
+            Оқушы тарихи тұлға туралы сұрақ қойып,
+            білімді диалог арқылы меңгере алады.
+          </p>
+
+        </div>
+
+
+        <div class="chat-layout">
+
+
+          <!-- PERSONAS -->
+
+          <aside class="persona-panel">
+
+            <h3>Тұлғаны таңдаңыз</h3>
+
+            <p>
+              Демо ретінде бірнеше тарихи-мәдени
+              тұлға профилі енгізілген.
+            </p>
+
+
+            <div class="persona-list">
+
+
+              <div
+                class="persona active"
+                data-person="abai"
+              >
+
+                <div class="persona-avatar">
+                  📜
+                </div>
+
+                <div>
+                  <strong>Абай Құнанбайұлы</strong>
+                  <span>Ақын, ойшыл</span>
+                </div>
+
+              </div>
+
+
+              <div
+                class="persona"
+                data-person="alash"
+              >
+
+                <div class="persona-avatar">
+                  🎓
+                </div>
+
+                <div>
+                  <strong>Алаш зиялылары</strong>
+                  <span>Білім және ұлттық идея</span>
+                </div>
+
+              </div>
+
+
+              <div
+                class="persona"
+                data-person="batyr"
+              >
+
+                <div class="persona-avatar">
+                  🛡️
+                </div>
+
+                <div>
+                  <strong>Қазақ батыры</strong>
+                  <span>Ел қорғаған тарихи кейіпкер</span>
+                </div>
+
+              </div>
+
+
+            </div>
+
+            <div
+              class="ornament-corner corner-br"
+            ></div>
+
+          </aside>
+
+
+          <!-- CHAT -->
+
+          <div class="chat-window">
+
+            <div class="chat-top">
+
+              <div class="chat-person">
+
+                <div
+                  class="chat-avatar"
+                  id="chatAvatar"
+                >
+                  📜
+                </div>
+
+                <div>
+
+                  <strong id="chatName">
+                    Абай Құнанбайұлы
+                  </strong>
+
+                  <span>
+                    <i class="online-dot"></i>
+                    AI-демо дайын
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="chat-messages"
+              id="chatMessages"
+            >
+
+              <div class="message bot">
+
+                <div class="bubble">
+                  Сәлем, жас зерттеуші! 👋
+                  Мен — AI-Тарихи Тұлға демосымын.
+                  Маған тарих, туған өлке немесе
+                  білім туралы сұрақ қойып көр.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="chat-input-area">
+
+              <input
+                id="chatInput"
+                type="text"
+                placeholder="Мысалы: Абай балаларға қандай кеңес берер еді?"
+              >
+
+              <button
+                class="send-btn"
+                id="sendBtn"
+                aria-label="Жіберу"
+              >
+                ➤
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         STATS
+    ======================================================== -->
+
+    <section class="section stats">
+
+      <div class="section-inner">
+
+        <div class="stats-grid">
+
+          <div class="stat">
+            <strong>3+</strong>
+            <span>AI тапсырма түрі</span>
+          </div>
+
+          <div class="stat">
+            <strong>1 сек</strong>
+            <span>Демо генерация уақыты</span>
+          </div>
+
+          <div class="stat">
+            <strong>4</strong>
+            <span>Бастауыш сынып деңгейі</span>
+          </div>
+
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Өңірлік идеялар</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="ornament-strip"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+
+  <footer>
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <div class="logo">
+
+          <div class="logo-mark"></div>
+
+          <div class="logo-text">
+            <strong>Smart-Region Edu</strong>
+            <span>ӨҢІРЛІК БІЛІМ БЕРУ + ЖИ</span>
+          </div>
+
+        </div>
+
+        <p>
+          Қазақы ұлттық құндылықтарды заманауи
+          жасанды интеллект технологияларымен
+          ұштастыратын білім беру платформасының
+          демонстрациялық нұсқасы.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>Платформа</h4>
+
+        <ul>
+          <li><a href="#features">Мүмкіндіктер</a></li>
+          <li><a href="#generator">AI Генератор</a></li>
+          <li><a href="#chat">AI-Тұлға</a></li>
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h4>Мұғалімге</h4>
+
+        <ul>
+          <li><a href="#generator">Есеп жасау</a></li>
+          <li><a href="#generator">Тапсырма жасау</a></li>
+          <li><a href="#chat">Тұлғамен сөйлесу</a></li>
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h4>Smart Edu</h4>
+
+        <ul>
+          <li>🇰🇿 Қазақстан</li>
+          <li>🤖 Жасанды интеллект</li>
+          <li>📚 Бастауыш білім</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+      <span>
+        © 2026 Smart-Region Edu. Demo prototype.
+      </span>
+
+      <span>
+        Қазақы колорит • AI • Білім
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       LOGIN MODAL
+  ========================================================= -->
+
+  <div
+    class="modal-overlay"
+    id="loginModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-top">
+
+        <button
+          class="close-modal"
+          id="closeModal"
+        >
+          ×
+        </button>
+
+        <h3>Smart-Region Edu</h3>
+
+        <p>
+          Мұғалім кабинеті
+        </p>
+
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="field">
+
+          <label>
+            Электрондық пошта
+          </label>
+
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="teacher@example.kz"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Құпиясөз
+          </label>
+
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="••••••••"
+          >
+
+        </div>
+
+
+        <button
+          class="login-submit"
+          id="loginSubmit"
+        >
+          Кіру
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  >
+    Дайын!
+  </div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
+  <script>
+
+    /* =========================================================
+       UTILITY
+    ========================================================= */
+
+    const $ = (selector) =>
+      document.querySelector(selector);
+
+    const $$ = (selector) =>
+      document.querySelectorAll(selector);
+
+
+    function showToast(message) {
+
+      const toast = $("#toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+    }
+
+
+    /* =========================================================
+       SMOOTH NAVIGATION
+    ========================================================= */
+
+    function scrollToGenerator() {
+
+      document
+        .querySelector("#generator")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    function scrollToChat() {
+
+      document
+        .querySelector("#chat")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    $("#mobileMenu").addEventListener(
+      "click",
+      () => {
+
+        const nav = document.querySelector("nav");
+
+        if (nav.style.display === "flex") {
+
+          nav.style.display = "";
+
+        } else {
+
+          nav.style.display = "flex";
+
+          nav.style.position = "absolute";
+          nav.style.top = "70px";
+          nav.style.left = "0";
+          nav.style.right = "0";
+          nav.style.padding = "15px";
+          nav.style.background = "#083b63";
+          nav.style.flexDirection = "column";
+          nav.style.alignItems = "stretch";
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       DEMO AI DATA
+    ========================================================= */
+
+    const regionData = {
+
+      "ақтөбе": {
+        places: [
+          "Ақтөбе қаласы",
+          "Елек өзені",
+          "Ақтөбе облысының кең даласы"
+        ],
+        person: "Әлия Молдағұлова",
+        fact:
+          "Ақтөбе өңірі Қазақстанның батыс бөлігінде орналасқан."
+      },
+
+      "астана": {
+        places: [
+          "Бәйтерек монументі",
+          "Есіл өзені",
+          "Астана қаласының заманауи орталығы"
+        ],
+        person: "Сәкен Сейфуллин",
+        fact:
+          "Астана — Қазақстанның елордасы."
+      },
+
+      "алматы": {
+        places: [
+          "Медеу",
+          "Іле Алатауы",
+          "Алматы қаласы"
+        ],
+        person: "Мұхтар Әуезов",
+        fact:
+          "Алматы Іле Алатауының етегінде орналасқан."
+      },
+
+      "шымкент": {
+        places: [
+          "Шымкент қаласы",
+          "Қаратау өңірі",
+          "Оңтүстік Қазақстан табиғаты"
+        ],
+        person: "Қазыбек би",
+        fact:
+          "Шымкент — Қазақстанның оңтүстігіндегі ірі қалалардың бірі."
+      },
+
+      "орал": {
+        places: [
+          "Жайық өзені",
+          "Орал қаласы",
+          "Батыс Қазақстан даласы"
+        ],
+        person: "Сырым Датұлы",
+        fact:
+          "Орал қаласы Жайық өзенінің маңында орналасқан."
+      },
+
+      "қызылорда": {
+        places: [
+          "Сырдария өзені",
+          "Қызылорда қаласы",
+          "Сыр бойы"
+        ],
+        person: "Қорқыт ата",
+        fact:
+          "Қызылорда өңірі Сырдария өзенімен тығыз байланысты."
+      },
+
+      "семей": {
+        places: [
+          "Ертіс өзені",
+          "Семей қаласы",
+          "Абайдың әдеби ортасы"
+        ],
+        person: "Абай Құнанбайұлы",
+        fact:
+          "Семей өңірі Абай шығармашылығымен тығыз байланысты."
+      }
+
+    };
+
+
+    /* =========================================================
+       SUBJECT GENERATOR
+    ========================================================= */
+
+    function normalize(text) {
+
+      return text
+        .trim()
+        .toLowerCase();
+
+    }
+
+
+    function getRegionInfo(region) {
+
+      const key = normalize(region);
+
+      return regionData[key] || {
+
+        places: [
+          `${region} өңірі`,
+          `${region} аймағының табиғаты`,
+          `${region} елді мекені`
+        ],
+
+        person:
+          "туған өлкенің белгілі тұлғасы",
+
+        fact:
+          `${region} — оқушыларға туған өлкені зерттеуге мүмкіндік беретін маңызды аймақ.`
+
+      };
+
+    }
+
+
+    function createTasks(subject, region, grade) {
+
+      const data = getRegionInfo(region);
+
+      const tasks = [];
+
+      /* -----------------------------------------
+         TASK 1 — MATH
+      ----------------------------------------- */
+
+      if (
+        subject.toLowerCase().includes("қосу") ||
+        subject.toLowerCase().includes("математика") ||
+        subject.toLowerCase().includes("есеп")
+      ) {
+
+        const a = 3 + Number(grade);
+        const b = 4 + Number(grade);
+        const answer = a + b;
+
+        tasks.push({
+
+          title:
+            `${region} өңірімен байланысты есеп`,
+
+          text:
+            `${data.places[0]} туралы сабақта ` +
+            `${a} сурет көрсетілді. Кейін тағы ` +
+            `${b} сурет қосылды. Барлығы неше сурет болды?`,
+
+          answer:
+            `Жауабы: ${answer} сурет`
+
+        });
+
+      } else {
+
+        tasks.push({
+
+          title:
+            `${region} туралы зерттеу тапсырмасы`,
+
+          text:
+            `"${subject}" тақырыбын ${region} өңірімен ` +
+            `байланыстырып, оқушыға 3 маңызды дерек ` +
+            `табуға тапсырма беріңіз.`,
+
+          answer:
+            "3 дерек"
+
+        });
+
+      }
+
+
+      /* -----------------------------------------
+         TASK 2 — GEOGRAPHY
+      ----------------------------------------- */
+
+      tasks.push({
+
+        title:
+          "Өңір географиясын зерттеу",
+
+        text:
+          `${data.places[1]} туралы қысқаша ақпарат оқы. ` +
+          `Оның туған өлкеңмен қандай байланысы бар екенін ` +
+          `1–2 сөйлеммен түсіндір.`,
+
+        answer:
+          data.fact
+
+      });
+
+
+      /* -----------------------------------------
+         TASK 3 — PERSON
+      ----------------------------------------- */
+
+      tasks.push({
+
+        title:
+          "Тарихи тұлға тапсырмасы",
+
+        text:
+          `${data.person} туралы мұғалімнің көмегімен ` +
+          `2 дерек тап. Содан кейін "${subject}" ` +
+          `тақырыбымен байланысты бір сөйлем құрастыр.`,
+
+        answer:
+          "2 дерек + 1 сөйлем"
+
+      });
+
+
+      return tasks;
+
+    }
+
+
+    /* =========================================================
+       RENDER TASKS
+    ========================================================= */
+
+    function renderTasks(tasks, subject, region) {
+
+      const resultContent =
+        $("#resultContent");
+
+      resultContent.innerHTML = "";
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className = "tasks";
+
+
+      tasks.forEach((task, index) => {
+
+        const card =
+          document.createElement("article");
+
+        card.className = "task-card";
+
+        card.innerHTML = `
+
+          <div class="task-title">
+            <span class="task-number">
+              ${index + 1}
+            </span>
+            ${task.title}
+          </div>
+
+          <div class="task-text">
+            ${task.text}
+          </div>
+
+          <span class="task-answer">
+            ✓ ${task.answer}
+          </span>
+
+        `;
+
+        wrapper.appendChild(card);
+
+      });
+
+
+      const actions =
+        document.createElement("div");
+
+      actions.className =
+        "result-actions";
+
+
+      const copyBtn =
+        document.createElement("button");
+
+      copyBtn.className = "small-btn";
+
+      copyBtn.textContent =
+        "📋 Тапсырмаларды көшіру";
+
+      copyBtn.onclick = () => {
+
+        const text =
+          tasks
+            .map(
+              (t, i) =>
+                `${i + 1}. ${t.title}\n${t.text}\n${t.answer}`
+            )
+            .join("\n\n");
+
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            showToast(
+              "Тапсырмалар көшірілді!"
+            );
+          });
+
+      };
+
+
+      const printBtn =
+        document.createElement("button");
+
+      printBtn.className = "small-btn";
+
+      printBtn.textContent =
+        "🖨️ Басып шығару";
+
+      printBtn.onclick = () => {
+
+        window.print();
+
+      };
+
+
+      actions.appendChild(copyBtn);
+      actions.appendChild(printBtn);
+
+      resultContent.appendChild(wrapper);
+      resultContent.appendChild(actions);
+
+      $("#resultSubtitle").textContent =
+        `${region} • ${subject} • ${tasks.length} тапсырма`;
+
+    }
+
+
+    /* =========================================================
+       GENERATE BUTTON
+    ========================================================= */
+
+    $("#generateBtn").addEventListener(
+      "click",
+      () => {
+
+        const subject =
+          $("#subject").value.trim();
+
+        const region =
+          $("#region").value.trim();
+
+        const grade =
+          $("#grade").value;
+
+
+        if (!subject || !region) {
+
+          showToast(
+            "Сабақ тақырыбы мен өңірді енгізіңіз."
+          );
+
+          return;
+
+        }
+
+
+        const button =
+          $("#generateBtn");
+
+        button.disabled = true;
+
+        button.textContent =
+          "⏳ AI тапсырма жасап жатыр...";
+
+
+        $("#resultContent").innerHTML = `
+
+          <div class="empty-state">
+
+            <div>
+
+              <div
+                class="empty-state-icon"
+              >
+                🤖
+              </div>
+
+              <strong>
+                AI ойлануда...
+              </strong>
+
+              <p>
+                Өңірлік контекст талданып жатыр.
+              </p>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        /*
+          Demonstration of approximately
+          one-second AI generation.
+        */
+
+        setTimeout(() => {
+
+          const tasks =
+            createTasks(
+              subject,
+              region,
+              grade
+            );
+
+          renderTasks(
+            tasks,
+            subject,
+            region
+          );
+
+          button.disabled = false;
+
+          button.textContent =
+            "🚀 AI арқылы тапсырма жасау";
+
+          showToast(
+            "3 тапсырма сәтті жасалды!"
+          );
+
+        }, 1000);
+
+      }
+    );
+
+
+    /* =========================================================
+       CHATBOT PERSONAS
+    ========================================================= */
+
+    const personas = {
+
+      abai: {
+
+        name:
+          "Абай Құнанбайұлы",
+
+        avatar:
+          "📜",
+
+        greeting:
+          "Сәлем, жас досым! Білімге қызығушылық танытып отырғаның қуантады. Сұрағыңды қоя бер.",
+
+        keywords: {
+
+          "білім":
+            "Білім адамға дүниені тануға, жақсы мен жаманды ажыратуға көмектеседі. Көп оқып, іздену маңызды.",
+
+          "бал":
+            "Балаларға айтарым: талаптанып оқыңдар, еңбек етіңдер және жақсы мінез қалыптастырыңдар.",
+
+          "өңір":
+            "Туған өлкені тану — өз еліңді танудың бір жолы. Табиғатын, тарихын және адамдарын зертте.",
+
+          "ақыл":
+            "Ақыл мен білімді еңбекпен ұштастырсаң, жақсы нәтижеге жетуге болады.",
+
+          "кітап":
+            "Кітап оқу адамның ойлау қабілетін дамытады. Әр кітаптан жаңа бір ой табуға тырыс."
+
+        }
+
+      },
+
+
+      alash: {
+
+        name:
+          "Алаш зиялылары",
+
+        avatar:
+          "🎓",
+
+        greeting:
+          "Сәлем! Білім мен ел болашағы туралы сұрақтарыңды қой. Білімді ұрпақ — елдің болашағы.",
+
+        keywords: {
+
+          "білім":
+            "Білімді болу — өзіңді ғана емес, қоғамды дамытуға мүмкіндік береді.",
+
+          "ел":
+            "Елге қызмет ету үшін алдымен білім алып, жауапкершілік пен еңбекқорлықты дамыту керек.",
+
+          "мектеп":
+            "Мектеп — баланың дүниені танып, өз қабілетін ашатын маңызды орта.",
+
+          "тарих":
+            "Өз тарихыңды білу ұлттық сананы қалыптастыруға көмектеседі."
+
+        }
+
+      },
+
+
+      batyr: {
+
+        name:
+          "Қазақ батыры",
+
+        avatar:
+          "🛡️",
+
+        greeting:
+          "Армысың, жас ұрпақ! Ерлік пен ел тарихы туралы сұрақтарыңды қой.",
+
+        keywords: {
+
+          "батыр":
+            "Батырлық тек күш емес. Батыр болу — елді, жерді және халықты қорғауға дайын болу.",
+
+          "ерлік":
+            "Ерлік қиын жағдайда дұрыс шешім қабылдап, өз еліңе адал болудан басталады.",
+
+          "отан":
+            "Отанды сүю туған жерді құрметтеуден, табиғатын қорғаудан және жақсы білім алудан көрінеді.",
+
+          "тарих":
+            "Тарихты білу — өткеннен сабақ алып, болашақты дұрыс құруға мүмкіндік береді."
+
+        }
+
+      }
+
+    };
+
+
+    let currentPersona = "abai";
+
+
+    /* =========================================================
+       CHANGE PERSONA
+    ========================================================= */
+
+    $$(".persona").forEach(persona => {
+
+      persona.addEventListener(
+        "click",
+        () => {
+
+          $$(".persona").forEach(p =>
+            p.classList.remove("active")
+          );
+
+          persona.classList.add("active");
+
+          currentPersona =
+            persona.dataset.person;
+
+          const data =
+            personas[currentPersona];
+
+          $("#chatName").textContent =
+            data.name;
+
+          $("#chatAvatar").textContent =
+            data.avatar;
+
+          addBotMessage(
+            data.greeting
+          );
+
+        }
+      );
+
+    });
+
+
+    /* =========================================================
+       CHAT FUNCTIONS
+    ========================================================= */
+
+    function addUserMessage(text) {
+
+      const container =
+        $("#chatMessages");
+
+      const message =
+        document.createElement("div");
+
+      message.className =
+        "message user";
+
+      message.innerHTML = `
+        <div class="bubble">
+          ${escapeHtml(text)}
+        </div>
+      `;
+
+      container.appendChild(message);
+
+      scrollChat();
+
+    }
+
+
+    function addBotMessage(text) {
+
+      const container =
+        $("#chatMessages");
+
+      const message =
+        document.createElement("div");
+
+      message.className =
+        "message bot";
+
+      message.innerHTML = `
+        <div class="bubble">
+          ${text}
+        </div>
+      `;
+
+      container.appendChild(message);
+
+      scrollChat();
+
+    }
+
+
+    function addTyping() {
+
+      const container =
+        $("#chatMessages");
+
+      const message =
+        document.createElement("div");
+
+      message.className =
+        "message bot";
+
+      message.id =
+        "typingMessage";
+
+      message.innerHTML = `
+
+        <div class="bubble">
+
+          <span class="typing">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+        </div>
+
+      `;
+
+      container.appendChild(message);
+
+      scrollChat();
+
+    }
+
+
+    function removeTyping() {
+
+      const typing =
+        $("#typingMessage");
+
+      if (typing) {
+        typing.remove();
+      }
+
+    }
+
+
+    function scrollChat() {
+
+      const container =
+        $("#chatMessages");
+
+      container.scrollTop =
+        container.scrollHeight;
+
+    }
+
+
+    function escapeHtml(text) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
+
+    }
+
+
+    /* =========================================================
+       DEMO AI RESPONSE
+    ========================================================= */
+
+    function generateChatResponse(text) {
+
+      const data =
+        personas[currentPersona];
+
+      const lower =
+        text.toLowerCase();
+
+      for (
+        const keyword in data.keywords
+      ) {
+
+        if (
+          lower.includes(keyword)
+        ) {
+
+          return data.keywords[keyword];
+
+        }
+
+      }
+
+
+      if (
+        lower.includes("сәлем") ||
+        lower.includes("салам")
+      ) {
+
+        return data.greeting;
+
+      }
+
+
+      if (
+        lower.includes("ақтөбе")
+      ) {
+
+        return `
+          Ақтөбе туралы сұрағың қызықты!
+          Туған өлкенің тарихын, табиғатын,
+          белгілі тұлғаларын зерттеп көр.
+          Мұғаліміңмен бірге өңір картасынан
+          маңызды нысандарды белгілеуге болады.
+        `;
+
+      }
+
+
+      if (
+        lower.includes("қалай")
+      ) {
+
+        return `
+          Ең алдымен сұрағыңды нақтыла.
+          Мысалы: "Білім не үшін қажет?",
+          "Туған өлкені қалай зерттеймін?",
+          немесе "Балаларға қандай кеңес берер едіңіз?"
+        `;
+
+      }
+
+
+      return `
+        Бұл өте жақсы сұрақ! 🌟
+        ${data.name} атынан жауап беретін
+        демонстрациялық AI сіздің сұрағыңызды
+        білім, тарих және туған өлке тақырыптарымен
+        байланыстырып түсіндіруге тырысады.
+        Тағы бір нақты сұрақ қойып көр.
+      `;
+
+    }
+
+
+    /* =========================================================
+       SEND MESSAGE
+    ========================================================= */
+
+    function sendMessage() {
+
+      const input =
+        $("#chatInput");
+
+      const text =
+        input.value.trim();
+
+      if (!text) {
+
+        return;
+
+      }
+
+
+      addUserMessage(text);
+
+      input.value = "";
+
+      addTyping();
+
+
+      /*
+        Demonstration response delay.
+      */
+
+      setTimeout(() => {
+
+        removeTyping();
+
+        const response =
+          generateChatResponse(text);
+
+        addBotMessage(response);
+
+      }, 700);
+
+    }
+
+
+    $("#sendBtn").addEventListener(
+      "click",
+      sendMessage
+    );
+
+
+    $("#chatInput").addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter"
+        ) {
+
+          sendMessage();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       LOGIN MODAL
+    ========================================================= */
+
+    $("#loginBtn").addEventListener(
+      "click",
+      () => {
+
+        $("#loginModal")
+          .classList.add("active");
+
+      }
+    );
+
+
+    $("#closeModal").addEventListener(
+      "click",
+      () => {
+
+        $("#loginModal")
+          .classList.remove("active");
+
+      }
+    );
+
+
+    $("#loginModal").addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          $("#loginModal")
+        ) {
+
+          $("#loginModal")
+            .classList.remove("active");
+
+        }
+
+      }
+    );
+
+
+    $("#loginSubmit").addEventListener(
+      "click",
+      () => {
+
+        const email =
+          $("#loginEmail").value.trim();
+
+        const password =
+          $("#loginPassword").value.trim();
+
+
+        if (!email || !password) {
+
+          showToast(
+            "Email және құпиясөзді енгізіңіз."
+          );
+
+          return;
+
+        }
+
+
+        $("#loginModal")
+          .classList.remove("active");
+
+        showToast(
+          "Demo режимінде кіру сәтті орындалды!"
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       INITIAL DEMO MESSAGE
+    ========================================================= */
+
+    /*
+      Give the chat a slightly more realistic
+      welcome message after page load.
+    */
+
+    setTimeout(() => {
+
+      addBotMessage(
+        "Мысалы: «Балаларға білімнің маңызын қалай түсіндірер едіңіз?» деп сұрап көр."
+      );
+
+    }, 900);
+
+
+  </script>
+
+</body>
+</html>
